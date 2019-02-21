@@ -64,43 +64,19 @@
 				<version>0.8.2</version>
 				<executions>
 					<execution>
-						<id>jacoco-initialize</id>
 						<goals>
 							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
-	<!-- For reporting jacoco (unit test coverage) and pmd (for code quality)-->
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.2</version>
-			</plugin>
-			<plugin>
-				<!-- PMD will output a file called pmd.html within target/site if any code violations present. -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.11.0</version>
-				<configuration>
-					<rulesets>
-						<ruleset>/config/kalahapp-ruleset.xml</ruleset>
-					</rulesets>
-					<sourceEncoding>utf-8</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-					<skipEmptyReport>false</skipEmptyReport>
-					<excludeRoots>
-						<excludeRoot>target/generated-sources/</excludeRoot>
-					</excludeRoots>
-					<failOnViolation>false</failOnViolation>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
-
 </project>
