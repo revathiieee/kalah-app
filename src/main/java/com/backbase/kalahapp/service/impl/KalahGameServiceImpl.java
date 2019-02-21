@@ -18,9 +18,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class KalahGameServiceImpl implements KalahGameService {
 
+    /**
+     * Instantiaties GameRepository
+     */
     @Autowired
     private KalahGameRepository gameRepository;
 
+    /**
+     * Instantiaties GameHelper
+     */
     @Autowired
     private KalahGameHelper gameHelper;
 

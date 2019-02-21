@@ -18,6 +18,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class KalahGameRepository {
 
+    /**
+     * Gamemap which holds KalahGame object as value
+     */
     private static final Map<String, KalahGame> gameMap = new ConcurrentHashMap<>();
 
     /**

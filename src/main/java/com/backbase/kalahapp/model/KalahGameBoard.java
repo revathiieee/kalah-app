@@ -2,6 +2,7 @@ package com.backbase.kalahapp.model;
 
 import com.backbase.kalahapp.exception.KalahRuntimeException;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,13 +13,32 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author revathik
  */
 @Data
+@NoArgsConstructor
 public class KalahGameBoard {
 
+    /**
+     * Hold Pit Start Index as 1
+     */
     public static final Integer PIT_START_INDEX = 1;
+    /**
+     * Hold Pit End Index as 14
+     */
     public static final Integer PIT_END_INDEX = 14;
+    /**
+     * Hold Player1 Home as 7
+     */
     public static final Integer PLAYER1_HOME = 7;
+    /**
+     * Hold Player2 Home as 14
+     */
     public static final Integer PLAYER2_HOME = 14;
+    /**
+     * Hold initial stone pit as 6
+     */
     public static final Integer INITIAL_STONE_ON_PIT = 6;
+    /**
+     * Hold initial stone home as 0
+     */
     public static final Integer INITIAL_STONE_ON_HOME = 0;
 
     /**

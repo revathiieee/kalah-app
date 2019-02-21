@@ -14,8 +14,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class KalahGamePlayer {
 
-
+    /**
+     * Hold player1 index as 1
+     */
     public static final Integer PLAYER1_INDEX = 1;
+    /**
+     * Hold player2 index as 2
+     */
     public static final Integer PLAYER2_INDEX = 2;
 
     /**
