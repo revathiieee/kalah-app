@@ -20,25 +20,25 @@ This is a java springboot application that runs the kalah game. The implementati
 * Maven 3.5.4
 
 **Dependencies used for this application**
-*Spring boot 2.1.2 - Spring Framework
-*Swagger API 2.9.2 - REST API Documentation
-*lombok 1.18.4 - Java Library
-*Jacoco Plugin 0.8.2 - Unit Test Coverage Plugin
+* Spring boot 2.1.2 - Spring Framework
+* Swagger API 2.9.2 - REST API Documentation
+* lombok 1.18.4 - Java Library
+* Jacoco Plugin 0.8.2 - Unit Test Coverage Plugin
 
 ### Execution
 
-1.**Checkout the source code**
+1. **Checkout the source code**
     ```
       git clone https://github.com/revathiieee/kalah-app
       cd kalah-app
     ```
 
-2.**Build the application**
+2. **Build the application**
     ```
     mvn clean install
     ```
 
-3.**Run the application**
+3. **Run the application**
     ```
     mvn spring-boot:run
     ```
