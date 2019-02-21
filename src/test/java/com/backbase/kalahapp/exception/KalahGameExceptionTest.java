@@ -18,9 +18,9 @@ public class KalahGameExceptionTest {
     @Test
     public void testKalahRuntimeExceptionMessage() {
         try {
-            throw new KalahRuntimeException("message");
+            throw new KalahRuntimeException("Internal Server Error");
         } catch (KalahRuntimeException are) {
-            Assert.assertEquals("message", are.getMessage());
+            Assert.assertEquals("Internal Server Error", are.getMessage());
             Assert.assertNull(are.getCause());
         }
     }
@@ -37,10 +37,10 @@ public class KalahGameExceptionTest {
     @Test
     public void testKalahRuntimeExceptionMessageSource() {
         try {
-            throw new KalahRuntimeException("message", new RuntimeException());
+            throw new KalahRuntimeException("Internal Server Error", new RuntimeException());
         } catch (KalahRuntimeException are) {
             Assert.assertEquals("java.lang.RuntimeException", are.getCause().getClass().getName());
-            Assert.assertEquals("message", are.getMessage());
+            Assert.assertEquals("Internal Server Error", are.getMessage());
         }
     }
 }

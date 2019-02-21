@@ -1,24 +1,33 @@
 package com.backbase.kalahapp.resource;
 
+import com.backbase.kalahapp.exception.KalahRuntimeException;
 import com.backbase.kalahapp.model.KalahGame;
+import com.backbase.kalahapp.service.KalahGameService;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.PostConstruct;
+import java.util.Objects;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,6 +41,13 @@ public class KalahGameResourceTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
+
+    @Mock
+    private KalahGameService kalahGameService;
+
+    @InjectMocks
+    private KalahGameResource resource = new KalahGameResource();
+
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -48,7 +64,7 @@ public class KalahGameResourceTest {
     public void testCreateGame() throws Exception {
 
         MockHttpServletRequestBuilder initGameRequest = MockMvcRequestBuilders.post("/games");
-        mockMvc.perform(initGameRequest)
+        MvcResult result = mockMvc.perform(initGameRequest)
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
 
@@ -76,8 +92,41 @@ public class KalahGameResourceTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.board.pits.5.stoneCount").value(KalahGameResourceTest.INITIAL_STONE_ON_PIT))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.board.pits.12.stoneCount").value(KalahGameResourceTest.INITIAL_STONE_ON_PIT))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.board.pits.14.stoneCount").value(KalahGameResourceTest.INITIAL_STONE_ON_HOUSE))
-
                 .andReturn();
+        int status = result.getResponse().getStatus();
+        Assert.assertEquals(201, status);
+    }
+
+    @Test
+    public void testCreateGameError() {
+        Mockito.when(
+                kalahGameService.createGame(Mockito.any())).thenThrow(new KalahRuntimeException("Oh, Error"));
+        try {
+            resource.createBoard(new Integer(5));
+        } catch (ResponseStatusException rse) {
+            Assert.assertTrue(Objects.requireNonNull(rse.getMessage()).contains("500"));
+        }
+        Mockito.validateMockitoUsage();
+    }
+
+    @Test
+    public void testPlayPitIndexError() {
+        try {
+            resource.play("", new Integer(0));
+        } catch (ResponseStatusException rse) {
+            Assert.assertTrue(Objects.requireNonNull(rse.getMessage()).contains("500"));
+        }
+        Mockito.validateMockitoUsage();
+    }
+
+    @Test
+    public void testPlayPlayerIndexError() {
+        try {
+            resource.play("", new Integer(7));
+        } catch (ResponseStatusException rse) {
+            Assert.assertTrue(Objects.requireNonNull(rse.getMessage()).contains("500"));
+        }
+        Mockito.validateMockitoUsage();
     }
 
 
@@ -91,7 +140,7 @@ public class KalahGameResourceTest {
         KalahGame game = objectMapper.readValue(responseString, KalahGame.class);
 
         MockHttpServletRequestBuilder playGame = MockMvcRequestBuilders.put("/games/"+game.getId()+"/pits/"+ 1);
-        mockMvc.perform(playGame)
+        MvcResult result = mockMvc.perform(playGame)
                 .andExpect(MockMvcResultMatchers.status().isOk())
 
                 //check game id
@@ -119,9 +168,9 @@ public class KalahGameResourceTest {
 
                 //check game state as end with player 1 house
                 .andExpect(MockMvcResultMatchers.jsonPath("$.gameStatus").value("PLAYER1_TURN"))
-
                 .andReturn();
-
+        int status = result.getResponse().getStatus();
+        Assert.assertEquals(200, status);
     }
 
 }

@@ -1,7 +1,11 @@
 package com.backbase.kalahapp.service.impl;
 
-import com.backbase.kalahapp.helper.KalahGameHelper;
-import com.backbase.kalahapp.model.*;
+
+import com.backbase.kalahapp.model.KalahGame;
+import com.backbase.kalahapp.model.KalahGameBoard;
+import com.backbase.kalahapp.model.KalahGamePit;
+import com.backbase.kalahapp.model.KalahGamePlayer;
+import com.backbase.kalahapp.model.KalahGameStatus;
 import com.backbase.kalahapp.repository.KalahGameRepository;
 import com.backbase.kalahapp.service.KalahGameService;
 import lombok.extern.slf4j.Slf4j;
