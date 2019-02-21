@@ -14,7 +14,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class KalahGameHelper {
 
+    /**
+     * Instanstiates gamerule
+     */
     private final KalahGameRule gameRule;
+
+    /**
+     * Default Constructor
+     */
     public KalahGameHelper() {
         this.gameRule = new StartPitRule();
         gameRule.setNext(new DistributePitStoneRule())
@@ -22,6 +29,11 @@ public class KalahGameHelper {
                 .setNext(new GameOverRule());
     }
 
+    /**
+     * Rule to play the game
+     * @param game KalahGame Object
+     * @param pit KalahGamePit Object
+     */
     public void play(KalahGame game, KalahGamePit pit) {
         this.gameRule.apply(game, pit);
     }

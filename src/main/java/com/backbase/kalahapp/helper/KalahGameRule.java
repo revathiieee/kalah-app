@@ -9,9 +9,24 @@ import com.backbase.kalahapp.model.KalahGamePit;
  * @author revathik
  */
 public abstract class KalahGameRule {
+
+    /**
+     * Instantiaties Game Rule
+     */
     protected KalahGameRule next;
+
+    /**
+     * Abstract Play method
+     * @param game KalahGame Object
+     * @param currentPit KalahGamePit Object
+     */
     public abstract void apply(KalahGame game, KalahGamePit currentPit);
 
+    /**
+     * Method to move next
+     * @param next
+     * @return
+     */
     public KalahGameRule setNext(KalahGameRule next) {
         this.next = next;
         return next;
