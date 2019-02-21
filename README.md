@@ -33,22 +33,22 @@ This is a java springboot application that runs the kalah game. The implementati
     *lombok 1.18.4 - Java Library
     *Jacoco Plugin 0.8.2 - Unit Test Coverage Plugin
 
-### Execution ###
+### Execution
 
-1. **Checkout the source code**
+1.**Checkout the source code**
 
     ```
       git clone https://github.com/revathiieee/kalah-app
       cd kalah-app
     ```
 
-2. **Build the application**
+2.**Build the application**
     
     ```
     mvn clean install
     ```
 
-3. **Run the application**
+3.**Run the application**
     ```
     mvn spring-boot:run
     ```
@@ -57,13 +57,13 @@ This is a java springboot application that runs the kalah game. The implementati
 
 After running the application and browse the swagger api url
    
-http://localhost:8090/
+(http://localhost:8090/)
    
 ### Tools Used
 
-* **Travis CI** - For continous integration
-* **codecov** - Highly integrated tools to group, merge, archive, and compare coverage reports.
-* **Codacy** - Automates code reviews and monitors code quality over time.
+***Travis CI** - For continous integration
+***codecov** - Highly integrated tools to group, merge, archive, and compare coverage reports.
+***Codacy** - Automates code reviews and monitors code quality over time.
 
 ### Screenshots
 
@@ -71,11 +71,11 @@ http://localhost:8090/
 
 ![swagger-ui-page.PNG](swagger-ui-page.PNG)
 
-**creategame**
+**Creategame**
 
 ![create-kalah-game.PNG](create-kalah-game.PNG)
 
-**playgame**
+**Playgame**
 
 ![play-kalah-game.PNG](play-kalah-game.PNG)
 
