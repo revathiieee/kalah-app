@@ -37,7 +37,6 @@ public class KalahGamePit {
      * @return Boolean false if player1 with house2 Or player 2 with home1, otherwise true
      */
     public Boolean isDistributable(KalahGameStatus gameStatus){
-
         return (!gameStatus.equals(KalahGameStatus.PLAYER1_TURN) || !this.pitIndex.equals(KalahGameBoard.PLAYER2_HOME))
                 && (!gameStatus.equals(KalahGameStatus.PLAYER2_TURN) || !this.pitIndex.equals(KalahGameBoard.PLAYER1_HOME));
     }
