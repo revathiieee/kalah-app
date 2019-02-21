@@ -24,9 +24,6 @@ import java.util.UUID;
 public class KalahGameServiceImplTest {
 
     @MockBean
-    private KalahGameHelper gameHelper;
-
-    @MockBean
     private KalahGameRepository gameRepository;
 
     @Autowired

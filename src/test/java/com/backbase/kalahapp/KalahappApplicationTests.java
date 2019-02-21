@@ -11,6 +11,7 @@ public class KalahappApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		// Will fail if beans are not created correctly.
 	}
 
 }
